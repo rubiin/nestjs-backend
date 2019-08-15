@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Delete, Param, Logger, Query, ParseIntPipe
 import { TasksService } from './tasks.service';
 import { Task } from './task.entity';
 import { CreateTask } from '../dto/createtask.dto';
-import { HTTP_RESPONSE } from '../utils/responsehelper.util';
+import { TaskFilter } from '../dto/taskFilter.dto';
 
 
 @Controller('tasks')
@@ -17,9 +17,14 @@ export class TasksController {
     }
 
     @Get()
-    getTask(): Promise<Task[]> {
+    getTask(@Query() taskFilterDto: TaskFilter): Promise<Task[]> { 
+        if (Object.keys(taskFilterDto).length){
+            return this.taskService.getTasks();
+        }
+        else{
+            return this.taskService.getTasks();
+        }
 
-        return this.taskService.getTasks();
 
     }
 
@@ -30,9 +35,9 @@ export class TasksController {
     }
 
     @Patch('/:id')
-    updateTask(@Param() params,@Body() createTaskDto: CreateTask): Promise<Task> {
+    updateTask(@Param() params, @Body() createTaskDto: CreateTask): Promise<Task> {
 
-        return this.taskService.updateTask(params.id, createTaskDto);
+        return this.taskService.updateTask(Number(params.id), createTaskDto);
 
     }
 
