@@ -1,10 +1,8 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { TaskStatus } from './tasks.enum';
-import { TaskRepository } from './task.repository';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Task } from './task.entity';
-import { CreateTask } from 'src/dto/createtask.dto';
-import {HTTP_RESPONSE} from '../utils/responsehelper.util';
+import {Injectable, NotFoundException} from '@nestjs/common';
+import {TaskRepository} from './task.repository';
+import {InjectRepository} from '@nestjs/typeorm';
+import {Task} from './task.entity';
+import {CreateTask} from 'src/dto/createtask.dto';
 
 @Injectable()
 export class TasksService {
@@ -32,8 +30,7 @@ export class TasksService {
     }
 
     async getTasks(): Promise<Task[]> {
-        const tasks: Task[] = await this.taskRepository.find();
-        return tasks;
+        return this.taskRepository.find();
     }
 
     async deleteTask(id: string): Promise<string> {
@@ -46,12 +43,11 @@ export class TasksService {
     }
 
     async updateTask(id: string, createTask: CreateTask): Promise<Task> {
-        const tasks = await this.taskRepository.findOne(id);
-        if (!tasks) {
-            throw new NotFoundException('Task doesn\'t exist');
-        }
-        await this.taskRepository;
-        return tasks;
+        let tasks =  await this.getTaskById(Number(id));
+        tasks.description = createTask.description;
+        tasks.status = createTask.status;
+        tasks.title = createTask.title;
+        return await this.taskRepository.save(tasks);
     }
 
 }

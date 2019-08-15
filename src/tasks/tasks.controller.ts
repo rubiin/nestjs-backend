@@ -29,8 +29,8 @@ export class TasksController {
 
     }
 
-    @Patch(':/id')
-    updateTask(@Param() params, createTaskDto: CreateTask): Promise<Task> {
+    @Patch('/:id')
+    updateTask(@Param() params,@Body() createTaskDto: CreateTask): Promise<Task> {
 
         return this.taskService.updateTask(params.id, createTaskDto);
 
@@ -38,7 +38,7 @@ export class TasksController {
 
     @Post()
     CreateTask(@Body() createTaskDto: CreateTask): Promise<Task> {
-        const task = this.taskService.createTask(createTaskDto);
-        return task;
+        return this.taskService.createTask(createTaskDto);
+
     }
 }
