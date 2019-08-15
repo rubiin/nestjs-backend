@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Delete, Param, Logger, Query, ParseIntPipe, HttpCode } from '@nestjs/common';
+import { Controller, Get, Post, Body, Delete, Param, Logger, Query, ParseIntPipe, HttpCode, Patch } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from './task.entity';
 import { CreateTask } from '../dto/createtask.dto';
+import { HTTP_RESPONSE } from '../utils/responsehelper.util';
 
 
 @Controller('tasks')
@@ -23,14 +24,19 @@ export class TasksController {
     }
 
     @Delete('/:id')
-    deleteTask(@Param() params): Promise<Task> {
+     deleteTask(@Param() params) {
+       return this.taskService.deleteTask(params.id);
 
-        return this.taskService.deleteTask(params.id);
+    }
+
+    @Patch(':/id')
+    updateTask(@Param() params, createTaskDto: CreateTask): Promise<Task> {
+
+        return this.taskService.updateTask(params.id, createTaskDto);
 
     }
 
     @Post()
-    @HttpCode(500)
     CreateTask(@Body() createTaskDto: CreateTask): Promise<Task> {
         const task = this.taskService.createTask(createTaskDto);
         return task;
