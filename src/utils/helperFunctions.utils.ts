@@ -1,8 +1,8 @@
 const isObjectEmpty = obj => {
-    if (Object.keys(obj).length){
+    if (Object.keys(obj).length) {
         return true;
     }
-    else{
+    else {
         return false;
     }
 };
@@ -10,11 +10,11 @@ const isObjectEmpty = obj => {
 
 const copyObject = (objSrc: any, objDes: any): any => {
 
-Object.keys(objSrc).forEach(key => {
+    Object.keys(objSrc).forEach(key => {
 
-objDes[key] = objSrc[key];
+        objDes[key] = objSrc[key];
 
-});
-return objDes;
+    });
+    return objDes;
 
 };

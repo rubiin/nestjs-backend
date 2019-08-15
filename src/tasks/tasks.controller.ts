@@ -17,11 +17,11 @@ export class TasksController {
     }
 
     @Get()
-    getTask(@Query() taskFilterDto: TaskFilter): Promise<Task[]> { 
-        if (Object.keys(taskFilterDto).length){
+    getTask(@Query() taskFilterDto: TaskFilter): Promise<Task[]> {
+        if (Object.keys(taskFilterDto).length) {
             return this.taskService.getTasks();
         }
-        else{
+        else {
             return this.taskService.getTasks();
         }
 
@@ -29,8 +29,8 @@ export class TasksController {
     }
 
     @Delete('/:id')
-     deleteTask(@Param() params) {
-       return this.taskService.deleteTask(params.id);
+    deleteTask(@Param() params) {
+        return this.taskService.deleteTask(params.id);
 
     }
 
