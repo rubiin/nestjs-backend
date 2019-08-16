@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Delete, Param, Logger, Query, ParseIntPipe, HttpCode, Patch } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { Task } from './task.entity';
-import { CreateTask } from '../dto/createtask.dto';
-import { TaskFilter } from '../dto/taskFilter.dto';
-import {isObjectEmpty} from '../utils/helperFunctions.utils';
+import { CreateTask } from '../../dto/createtask.dto';
+import { TaskFilter } from '../../dto/taskFilter.dto';
+import {isObjectEmpty} from '../../utils/helperFunctions.utils';
 
 
 @Controller('tasks')

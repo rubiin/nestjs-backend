@@ -1,4 +1,4 @@
-import { TaskStatus } from '../tasks/tasks.enum';
+import { TaskStatus } from '../modules/tasks/tasks.enum';
 
 export class CreateTask {
     id?: number;
