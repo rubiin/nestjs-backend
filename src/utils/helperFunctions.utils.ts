@@ -1,5 +1,5 @@
 const isObjectEmpty = (obj: any): boolean => {
-    if (Object.keys(obj).length) {
+    if (Object.keys(obj).length === 0) {
         return true;
     }
     else {
@@ -18,3 +18,5 @@ const copyObject = (objSrc: any, objDes: any): any => {
     return objDes;
 
 };
+
+export { isObjectEmpty, copyObject };
