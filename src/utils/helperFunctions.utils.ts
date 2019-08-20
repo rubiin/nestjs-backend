@@ -12,7 +12,7 @@ const isObjectEmpty = (obj: any): boolean => {
 
 const copyObject = (objSrc: any, objDes: any): any => {
 
-    Object.keys(objSrc).forEach(key => {
+    Object.keys(objSrc).forEach((key) => {
 
         objDes[key] = objSrc[key];
 
@@ -21,7 +21,7 @@ const copyObject = (objSrc: any, objDes: any): any => {
 
 };
 
-const TypeOrmErrorHandler = err => {
+const TypeOrmErrorHandler = (err) => {
 
     switch (err.code){
         case '23505':

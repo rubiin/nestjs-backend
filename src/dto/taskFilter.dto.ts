@@ -1,6 +1,6 @@
-import {TaskStatus} from "../modules/tasks/tasks.enum";
+import { TaskStatus } from '../modules/tasks/tasks.enum';
 
 export class TaskFilter {
-    taskStatus: TaskStatus;
-    search: string;
+    public taskStatus: TaskStatus;
+    public search: string;
 }

@@ -1,15 +1,15 @@
-import { Injectable, UnauthorizedException, NotFoundException } from '@nestjs/common';
-import { UserRepository } from './user.repository';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserDto } from '../../dto/userCreate.dto';
-import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
+import { UserDto } from '../../dto/userCreate.dto';
 import { TypeOrmErrorHandler } from '../../utils/helperFunctions.utils';
+import { User } from './user.entity';
+import { UserRepository } from './user.repository';
 @Injectable()
 export class AuthService {
     constructor(@InjectRepository(UserRepository) private readonly userRepository: UserRepository) { }
 
-    async createUser(userDto: UserDto): Promise<void> {
+    public async createUser(userDto: UserDto): Promise<void> {
         const user = new User();
         user.username = userDto.username;
         user.salt = await bcrypt.genSalt();
@@ -23,13 +23,13 @@ export class AuthService {
         }
     }
 
-    async getAllUsers(): Promise<User[]> {
+    public async getAllUsers(): Promise<User[]> {
 
         return this.userRepository.find();
 
     }
 
-    async validatePassword(userDto: UserDto): Promise<string> {
+    public async validatePassword(userDto: UserDto): Promise<string> {
         const user = await this.userRepository.findOne({ where: { username: userDto.username } });
         if (!user) {
             throw new NotFoundException('User not found');
