@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException, Req, Get, UseGuards } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { UserDto } from '../../dto/userCreate.dto';
@@ -6,6 +6,7 @@ import { TypeOrmErrorHandler } from '../../utils/helperFunctions.utils';
 import { User } from './user.entity';
 import { UserRepository } from './user.repository';
 import { JwtService } from '@nestjs/jwt';
+import { AuthGuard } from '@nestjs/passport';
 
 @Injectable()
 export class AuthService {

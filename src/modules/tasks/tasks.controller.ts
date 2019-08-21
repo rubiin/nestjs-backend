@@ -1,10 +1,12 @@
-import { Body, Controller, Delete, Get, HttpCode, Logger, Param, ParseIntPipe, Patch, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Query, UseGuards, UsePipes, ValidationPipe, Req } from '@nestjs/common';
 import { CreateTask } from '../../dto/createtask.dto';
 import { TaskFilter } from '../../dto/taskFilter.dto';
 import { isObjectEmpty } from '../../utils/helperFunctions.utils';
 import { Task } from './task.entity';
 import { TasksService } from './tasks.service';
 import { AuthGuard } from '@nestjs/passport';
+import { getUser } from '../auth/getUser.decorator';
+import { User } from '../auth/user.entity';
 
 
 @Controller('tasks')
@@ -37,7 +39,6 @@ export class TasksController {
         return this.taskService.deleteTask(params.id);
 
     }
-
     @Patch('/:id')
     public updateTask(@Param() params, @Body() createTaskDto: CreateTask): Promise<Task> {
 
@@ -46,8 +47,9 @@ export class TasksController {
     }
 
     @Post()
-    public CreateTask(@Body() createTaskDto: CreateTask): Promise<Task> {
-        return this.taskService.createTask(createTaskDto);
+    @UsePipes(new ValidationPipe({ validationError: { target: false } }))
+    public CreateTask(@Body() createTaskDto: CreateTask, @getUser() user: User): Promise<Task> {
+        return this.taskService.createTask(createTaskDto, user);
 
     }
 }

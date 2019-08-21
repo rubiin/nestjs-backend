@@ -1,6 +1,8 @@
 
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { TaskStatus } from './tasks.enum';
+import { User } from '../auth/user.entity';
+import { IsNotEmpty, IsString, MinLength, MaxLength, IsIn } from 'class-validator';
 
 @Entity()
 export class  Task extends BaseEntity{
@@ -16,4 +18,7 @@ export class  Task extends BaseEntity{
 
     @Column()
     public status: TaskStatus;
+
+    @ManyToOne(type => User, user => user.tasks, {eager: false})
+    user: User;
 }

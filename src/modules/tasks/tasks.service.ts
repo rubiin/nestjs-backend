@@ -4,6 +4,7 @@ import { CreateTask } from 'src/dto/createtask.dto';
 import { Task } from './task.entity';
 import { TaskRepository } from './task.repository';
 import { TaskStatus } from './tasks.enum';
+import { User } from '../auth/user.entity';
 
 @Injectable()
 export class TasksService {
@@ -21,11 +22,12 @@ export class TasksService {
 
     }
 
-    public async createTask(createTask: CreateTask): Promise<Task> {
+    public async createTask(createTask: CreateTask, user: User): Promise<Task> {
         const newTask = new Task();
         newTask.title = createTask.title;
         newTask.description = createTask.description;
         newTask.status = createTask.status;
+        newTask.user = user;
         await newTask.save();
         return newTask;
     }
