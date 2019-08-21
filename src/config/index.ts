@@ -1,4 +1,4 @@
-export default config = {
+export default {
   secret: 'secretKey',
-  expiresIn : '3600'
+  expiresIn: '10h'
 };

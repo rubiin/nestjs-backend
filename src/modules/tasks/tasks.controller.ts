@@ -1,12 +1,14 @@
-import { Body, Controller, Delete, Get, HttpCode, Logger, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Logger, Param, ParseIntPipe, Patch, Post, Query, UseGuards } from '@nestjs/common';
 import { CreateTask } from '../../dto/createtask.dto';
 import { TaskFilter } from '../../dto/taskFilter.dto';
 import { isObjectEmpty } from '../../utils/helperFunctions.utils';
 import { Task } from './task.entity';
 import { TasksService } from './tasks.service';
+import { AuthGuard } from '@nestjs/passport';
 
 
 @Controller('tasks')
+@UseGuards(AuthGuard('jwt'))
 export class TasksController {
     constructor(private readonly taskService: TasksService) { }
 

@@ -5,9 +5,13 @@ import { UserDto } from '../../dto/userCreate.dto';
 import { TypeOrmErrorHandler } from '../../utils/helperFunctions.utils';
 import { User } from './user.entity';
 import { UserRepository } from './user.repository';
+import { JwtService } from '@nestjs/jwt';
+
 @Injectable()
 export class AuthService {
-    constructor(@InjectRepository(UserRepository) private readonly userRepository: UserRepository) { }
+    constructor(@InjectRepository(UserRepository) private readonly userRepository: UserRepository
+    ,           private readonly jwtService: JwtService
+    ) { }
 
     public async createUser(userDto: UserDto): Promise<void> {
         const user = new User();
@@ -29,18 +33,20 @@ export class AuthService {
 
     }
 
-    public async validatePassword(userDto: UserDto): Promise<string> {
+    public async validatePassword(userDto: UserDto): Promise<{message: string, accesstoken: string}> {
         const user = await this.userRepository.findOne({ where: { username: userDto.username } });
         if (!user) {
             throw new NotFoundException('User not found');
         }
 
         if (await user.validatePassword(userDto.password)) {
-            return 'Successfully validated';
+            const payload = { username: userDto.username };
+            const accesstoken = await this.jwtService.sign(payload);
+            return {message: 'Successfully signed', accesstoken};
         } else {
             throw new UnauthorizedException('Invalid credentials');
         }
-
-
     }
+
+
 }
