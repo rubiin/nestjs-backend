@@ -7,6 +7,6 @@ export const typeormConfig: TypeOrmModuleOptions = {
     username: 'cmdbbtbi',
     password: 'wG8m7trOngY7VAgZtET1dqtJjQJNi-FE',
     database: 'cmdbbtbi',
-    entities: [__dirname + '/../**/*.entity.js'] ,
+    entities: ['src/**/**.entity{.ts,.js}'],
     synchronize: true
 };
