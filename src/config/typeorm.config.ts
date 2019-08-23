@@ -1,13 +1,14 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import config from './index';
 
 export const typeormConfig: TypeOrmModuleOptions = {
     type: 'postgres',
-    host: 'raja.db.elephantsql.com',
-    port: 5432,
+    host: config.db.host,
+    port: config.db.port,
     logging: ['query'],
-    username: 'cmdbbtbi',
-    password: 'wG8m7trOngY7VAgZtET1dqtJjQJNi-FE',
-    database: 'cmdbbtbi',
+    username: config.db.username,
+    password: config.db.password,
+    database: config.db.database,
     entities: ['src/**/**.entity{.ts,.js}'],
     synchronize: true
 };
