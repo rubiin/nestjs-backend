@@ -36,13 +36,24 @@ export class TasksService {
         return this.taskRepository.find();
     }
 
-    public async getFilteredTasks(title: string, status: TaskStatus): Promise<Task[]> {
+    public async getFilteredTasks(title: string, status: TaskStatus, user: User): Promise<Task[]> {
 
-        const query = this.taskRepository.createQueryBuilder('task')
-            .where('task.status = :status AND task.title LIKE :name', { status, name: `${title}%` })
-            .getMany();
+        const query = this.taskRepository.createQueryBuilder('task');
 
-        return query;
+        query.where('task.userId = :userid', { userid: user.id });
+
+
+        if (title) {
+            query.andWhere('task.title LIKE :name', { name: `${title}%` });
+        }
+
+        if (status) {
+            query.andWhere('task.status LIKE :status', { status });
+        }
+
+        const tasks = await query.getMany();
+
+        return tasks;
 
     }
 

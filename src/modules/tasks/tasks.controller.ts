@@ -22,13 +22,13 @@ export class TasksController {
     }
 
     @Get()
-    public getTask(@Query() taskFilterDto: TaskFilter): Promise<Task[]> {
+    public getTask(@Query() taskFilterDto: TaskFilter, @getUser() user): Promise<Task[]> {
 
         if (isObjectEmpty(taskFilterDto)) {
             return this.taskService.getTasks();
         }
         else {
-            return this.taskService.getFilteredTasks(taskFilterDto.search, taskFilterDto.taskStatus);
+            return this.taskService.getFilteredTasks(taskFilterDto.search, taskFilterDto.taskStatus, user);
         }
 
 
