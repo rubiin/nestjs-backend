@@ -1,10 +1,13 @@
 import { TaskStatus } from '../modules/tasks/tasks.enum';
-import { IsNotEmpty } from 'class-validator';
+import { ApiModelProperty } from '@nestjs/swagger';
 
 export class CreateTask {
+    @ApiModelProperty()
     public id?: number;
-    @IsNotEmpty()
+    @ApiModelProperty()
     public title: string;
+    @ApiModelProperty()
     public description: string;
+    @ApiModelProperty()
     public status: TaskStatus;
 }
