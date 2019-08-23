@@ -38,7 +38,11 @@ export class TasksService {
 
     public async getFilteredTasks(title: string, status: TaskStatus): Promise<Task[]> {
 
-        return this.taskRepository.find({where: {title, status}});
+        const query = this.taskRepository.createQueryBuilder('task')
+            .where('task.status = :status AND task.title LIKE :name', { status, name: `${title}%` })
+            .getMany();
+
+        return query;
 
     }
 

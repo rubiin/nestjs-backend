@@ -1,10 +1,13 @@
-import { Body, Controller, Get, Post, UsePipes, ValidationPipe, UseGuards, Req, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Body, Controller, Get, Post, UsePipes, ValidationPipe, UseGuards, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { UserDto } from '../../dto/userCreate.dto';
 import { UserLoginDto } from '../../dto/userLogin.dto';
 import { AuthService } from './auth.service';
 import { User } from './user.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { multerConfig } from 'src/utils/helperFunctions.utils';
+
 
 @Controller('auth')
 export class AuthController {
@@ -28,19 +31,12 @@ export class AuthController {
         return this.authService.validatePassword(userLogin);
     }
 
- 
 
     @Post('upload')
     @UseInterceptors(FileInterceptor('file', {
-        dest: 'uploads',
-        fileFilter: (req, file, cb) => {
-            // accept image only
-            if (!file.originalname.toLowerCase().match(/\.(jpg|jpeg|png)$/)) {
-                return cb(new Error('Only image files are allowed!'), false);
-            }
-            cb(null, true);
-        }
-    }))
+            storage: diskStorage(multerConfig)
+        })
+    )
     uploadFile(@UploadedFile() file) {
         console.log(file);
     }

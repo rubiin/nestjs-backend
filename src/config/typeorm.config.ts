@@ -4,6 +4,7 @@ export const typeormConfig: TypeOrmModuleOptions = {
     type: 'postgres',
     host: 'raja.db.elephantsql.com',
     port: 5432,
+    logging: ['query'],
     username: 'cmdbbtbi',
     password: 'wG8m7trOngY7VAgZtET1dqtJjQJNi-FE',
     database: 'cmdbbtbi',
