@@ -9,15 +9,16 @@ import { JwtStrategy } from './jwtStrategy';
 import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([UserRepository]),
-      PassportModule,
-      JwtModule.register({
-      secret : config.secret,
-      signOptions: { expiresIn : config.expiresIn },
+  imports: [
+    TypeOrmModule.forFeature([UserRepository]),
+    PassportModule,
+    JwtModule.register({
+      secret: config.secret,
+      signOptions: { expiresIn: config.expiresIn },
     }),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
-  exports: [JwtStrategy]
+  exports: [JwtStrategy],
 })
 export class AuthModule {}

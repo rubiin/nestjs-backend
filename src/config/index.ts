@@ -1,14 +1,14 @@
 const config = {
- dev: {
-  secret: 'secretKey',
-  expiresIn: '10h',
-  db:{
-    host: 'raja.db.elephantsql.com',
-    port: 5432,
-    username: 'cmdbbtbi',
-    password: 'wG8m7trOngY7VAgZtET1dqtJjQJNi-FE',
-    database: 'cmdbbtbi',
-  }
+  dev: {
+    secret: 'secretKey',
+    expiresIn: '10h',
+    db: {
+      host: 'raja.db.elephantsql.com',
+      port: 5432,
+      username: 'cmdbbtbi',
+      password: 'wG8m7trOngY7VAgZtET1dqtJjQJNi-FE',
+      database: 'cmdbbtbi',
+    },
   },
   production: {
     secret: 'asdhOA/&s8adbskha723ye3u',
@@ -19,7 +19,7 @@ const config = {
       username: 'cmdbbtbi',
       password: 'wG8m7trOngY7VAgZtET1dqtJjQJNi-FE',
       database: 'cmdbbtbi',
-    }
-  }
+    },
+  },
 };
 export default config[process.env.NODE_ENV];

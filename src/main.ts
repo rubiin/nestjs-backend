@@ -10,9 +10,7 @@ async function bootstrap() {
   app.use(compression());
   app.use(helmet());
 
-
-// swagger setup
-
+  // swagger setup
 
   const options = new DocumentBuilder()
     .setTitle('Cats example')
@@ -22,7 +20,6 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
-
 
   await app.listen(8000);
 }
