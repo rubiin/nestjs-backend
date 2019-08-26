@@ -29,10 +29,10 @@ export class AuthController {
   }
 
   @Get()
-  @UseGuards(AuthGuard('jwt'))
   public getUsers(): Promise<User[]> {
     return this.authService.getAllUsers();
   }
+
 
   @Post('login')
   @UsePipes(new ValidationPipe({ validationError: { target: false } }))
