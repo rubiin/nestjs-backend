@@ -10,7 +10,9 @@ import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
-    CacheModule.register(),
+    CacheModule.register({
+      ttl: 2 * 3600,
+    }),
     TypeOrmModule.forFeature([UserRepository]),
     PassportModule,
     JwtModule.register({

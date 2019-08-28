@@ -17,7 +17,6 @@ import { AuthController } from './modules/auth/auth.controller';
     TasksModule,
     TypeOrmModule.forRoot(typeormConfig),
     AuthModule,
-    CacheModule.register(),
   ],
   controllers: [],
   providers: [],
