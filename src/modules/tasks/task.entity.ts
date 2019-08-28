@@ -6,15 +6,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 import { TaskStatus } from './tasks.enum';
-import { User } from '../auth/user.entity';
-import {
-  IsNotEmpty,
-  IsString,
-  MinLength,
-  MaxLength,
-  IsIn,
-} from 'class-validator';
-
+import { User } from '@modules/auth/user.entity';
 @Entity()
 export class Task extends BaseEntity {
   @PrimaryGeneratedColumn()

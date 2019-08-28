@@ -19,8 +19,8 @@ import { isObjectEmpty } from '@utils/helperFunctions.utils';
 import { Task } from './task.entity';
 import { TasksService } from './tasks.service';
 import { AuthGuard } from '@nestjs/passport';
-import { getUser } from '../auth/getUser.decorator';
-import { User } from '../auth/user.entity';
+import { getUser } from '@modules/auth/getUser.decorator';
+import { User } from '@modules/auth/user.entity';
 
 @Controller('tasks')
 @UseGuards(AuthGuard('jwt'))

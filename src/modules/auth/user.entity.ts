@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 
 import { Exclude, Transform, Expose } from 'class-transformer';
-import { Task } from './../tasks/task.entity';
+import { Task } from '@modules/tasks/task.entity';
 
 @Entity()
 @Unique(['username'])

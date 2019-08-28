@@ -1,4 +1,4 @@
-import { TaskStatus } from '../modules/tasks/tasks.enum';
+import { TaskStatus } from '@modules/tasks/tasks.enum';
 import { ApiModelProperty } from '@nestjs/swagger';
 export class TaskFilter {
   @ApiModelProperty()
