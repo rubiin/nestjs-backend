@@ -13,9 +13,9 @@ import {
   ValidationPipe,
   Req,
 } from '@nestjs/common';
-import { CreateTask } from '../../dto/createtask.dto';
-import { TaskFilter } from '../../dto/taskFilter.dto';
-import { isObjectEmpty } from '../../utils/helperFunctions.utils';
+import { CreateTask } from '@dto/createtask.dto';
+import { TaskFilter } from '@dto/taskFilter.dto';
+import { isObjectEmpty } from '@utils/helperFunctions.utils';
 import { Task } from './task.entity';
 import { TasksService } from './tasks.service';
 import { AuthGuard } from '@nestjs/passport';

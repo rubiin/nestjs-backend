@@ -9,7 +9,24 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
+    "paths": {
+      "@utils/*": [
+        "src/utils/*"
+      ],
+      "@dto/*": [
+            "src/dto/*"
+          ],
+              "@middlewares/*": [
+                "src/middlewares/*"
+              ],
+                  "@modules/*": [
+                    "src/modules/*"
+                  ],
+                      "@config/*": [
+                        "src/config/*"
+                      ]
+    },
+    "incremental": true,
   },
   "exclude": ["node_modules", "dist"]
 }
