@@ -38,7 +38,7 @@ export class AuthController {
   }
 
   @Get(':id')
-  public test(@Param() param){
+  public test(@Param() param) {
     return param.id;
   }
 
