@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, CacheModule } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import config from '../../config';
@@ -10,6 +10,7 @@ import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
+    CacheModule.register(),
     TypeOrmModule.forFeature([UserRepository]),
     PassportModule,
     JwtModule.register({

@@ -5,20 +5,23 @@ import {
   Post,
   UsePipes,
   ValidationPipe,
-  UseGuards,
   UseInterceptors,
   UploadedFile,
+  CacheModule,
+  Param,
+  ClassSerializerInterceptor,
+  CacheInterceptor,
 } from '@nestjs/common';
 import { UserDto } from '../../dto/userCreate.dto';
 import { UserLoginDto } from '../../dto/userLogin.dto';
 import { AuthService } from './auth.service';
 import { User } from './user.entity';
-import { AuthGuard } from '@nestjs/passport';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { multerConfig } from 'src/utils/helperFunctions.utils';
 
 @Controller('auth')
+@UseInterceptors(CacheInterceptor)
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
@@ -29,10 +32,15 @@ export class AuthController {
   }
 
   @Get()
+  @UseInterceptors(ClassSerializerInterceptor)
   public getUsers(): Promise<User[]> {
     return this.authService.getAllUsers();
   }
 
+  @Get(':id')
+  public test(@Param() param){
+    return param.id;
+  }
 
   @Post('login')
   @UsePipes(new ValidationPipe({ validationError: { target: false } }))

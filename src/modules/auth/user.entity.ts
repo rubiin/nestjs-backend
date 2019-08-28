@@ -7,14 +7,18 @@ import {
   Unique,
   OneToMany,
 } from 'typeorm';
+
+import { Exclude, Transform, Expose } from 'class-transformer';
 import { Task } from './../tasks/task.entity';
 
 @Entity()
 @Unique(['username'])
 export class User extends BaseEntity {
+  @Expose({ name: 'uid' })
   @PrimaryGeneratedColumn()
   public id: number;
 
+  @Transform((value) => value.toUpperCase(), { toClassOnly: true })
   @Column()
   public username: string;
 
@@ -32,3 +36,6 @@ export class User extends BaseEntity {
     return this.password === hash;
   }
 }
+
+
+
