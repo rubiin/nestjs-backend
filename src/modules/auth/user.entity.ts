@@ -18,7 +18,7 @@ export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Transform((value) => value.toUpperCase(), { toClassOnly: true })
+  @Transform(value => value.toUpperCase(), { toClassOnly: true })
   @Column()
   public username: string;
 
@@ -36,6 +36,3 @@ export class User extends BaseEntity {
     return this.password === hash;
   }
 }
-
-
-
