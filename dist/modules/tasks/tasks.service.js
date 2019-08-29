@@ -1,1 +1,72 @@
-'use strict';var __decorate=this&&this.__decorate||function(decorators,target,key,desc){var c=arguments.length,r=c<3?target:desc===null?desc=Object.getOwnPropertyDescriptor(target,key):desc,d;if(typeof Reflect==='object'&&typeof Reflect.decorate==='function')r=Reflect.decorate(decorators,target,key,desc);else for(var i=decorators.length-1;i>=0;i--)if(d=decorators[i])r=(c<3?d(r):c>3?d(target,key,r):d(target,key))||r;return c>3&&r&&Object.defineProperty(target,key,r),r;};var __metadata=this&&this.__metadata||function(k,v){if(typeof Reflect==='object'&&typeof Reflect.metadata==='function')return Reflect.metadata(k,v);};var __param=this&&this.__param||function(paramIndex,decorator){return function(target,key){decorator(target,key,paramIndex);};};Object.defineProperty(exports,'__esModule',{value:true});const common_1=require('@nestjs/common');const typeorm_1=require('@nestjs/typeorm');const task_entity_1=require('./task.entity');const task_repository_1=require('./task.repository');let TasksService=class TasksService{constructor(taskRepository){this.taskRepository=taskRepository;}async getTaskById(id){const task=await this.taskRepository.findOne({where:{id}});if(!task){throw new common_1.NotFoundException(`Task with id ${id} cannot be found`);}return task;}async createTask(createTask,user){const newTask=new task_entity_1.Task();newTask.title=createTask.title;newTask.description=createTask.description;newTask.status=createTask.status;newTask.user=user;await newTask.save();return newTask;}async getTasks(){return this.taskRepository.find();}async getFilteredTasks(title,status,user){const query=this.taskRepository.createQueryBuilder('task');query.where('task.userId = :userid',{userid:user.id});if(title){query.andWhere('task.title LIKE :name',{name:`${title}%`});}if(status){query.andWhere('task.status LIKE :status',{status});}const tasks=await query.getMany();return tasks;}async deleteTask(id){const tasks=await this.taskRepository.delete(Number(id));if(tasks.affected===0){throw new common_1.NotFoundException('Task Not found');}return'deleted';}async updateTask(id,createTask){await this.taskRepository.update(id,createTask);return this.getTaskById(Number(id));}};TasksService=__decorate([common_1.Injectable(),__param(0,typeorm_1.InjectRepository(task_repository_1.TaskRepository)),__metadata('design:paramtypes',[task_repository_1.TaskRepository])],TasksService);exports.TasksService=TasksService;
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const task_entity_1 = require("./task.entity");
+const task_repository_1 = require("./task.repository");
+let TasksService = class TasksService {
+    constructor(taskRepository) {
+        this.taskRepository = taskRepository;
+    }
+    async getTaskById(id) {
+        const task = await this.taskRepository.findOne({ where: { id } });
+        if (!task) {
+            throw new common_1.NotFoundException(`Task with id ${id} cannot be found`);
+        }
+        return task;
+    }
+    async createTask(createTask, user) {
+        const newTask = new task_entity_1.Task();
+        newTask.title = createTask.title;
+        newTask.description = createTask.description;
+        newTask.status = createTask.status;
+        newTask.user = user;
+        await newTask.save();
+        return newTask;
+    }
+    async getTasks() {
+        return this.taskRepository.find();
+    }
+    async getFilteredTasks(title, status, user) {
+        const query = this.taskRepository.createQueryBuilder('task');
+        query.where('task.userId = :userid', { userid: user.id });
+        if (title) {
+            query.andWhere('task.title LIKE :name', { name: `${title}%` });
+        }
+        if (status) {
+            query.andWhere('task.status LIKE :status', { status });
+        }
+        const tasks = await query.getMany();
+        return tasks;
+    }
+    async deleteTask(id) {
+        const tasks = await this.taskRepository.delete(Number(id));
+        if (tasks.affected === 0) {
+            throw new common_1.NotFoundException('Task Not found');
+        }
+        return 'deleted';
+    }
+    async updateTask(id, createTask) {
+        await this.taskRepository.update(id, createTask);
+        return this.getTaskById(Number(id));
+    }
+};
+TasksService = __decorate([
+    common_1.Injectable(),
+    __param(0, typeorm_1.InjectRepository(task_repository_1.TaskRepository)),
+    __metadata("design:paramtypes", [task_repository_1.TaskRepository])
+], TasksService);
+exports.TasksService = TasksService;
+//# sourceMappingURL=tasks.service.js.map

@@ -1,1 +1,30 @@
-'use strict';var __decorate=this&&this.__decorate||function(decorators,target,key,desc){var c=arguments.length,r=c<3?target:desc===null?desc=Object.getOwnPropertyDescriptor(target,key):desc,d;if(typeof Reflect==='object'&&typeof Reflect.decorate==='function')r=Reflect.decorate(decorators,target,key,desc);else for(var i=decorators.length-1;i>=0;i--)if(d=decorators[i])r=(c<3?d(r):c>3?d(target,key,r):d(target,key))||r;return c>3&&r&&Object.defineProperty(target,key,r),r;};Object.defineProperty(exports,'__esModule',{value:true});const common_1=require('@nestjs/common');const typeorm_1=require('@nestjs/typeorm');const typeorm_config_1=require('./src/config/typeorm.config');const auth_module_1=require('./modules/auth/auth.module');const tasks_module_1=require('./modules/tasks/tasks.module');const logger_middleware_1=require('./middlewares/logger.middleware');let AppModule=class AppModule{configure(consumer){consumer.apply(logger_middleware_1.LoggerMiddleware).forRoutes({path:'*',method:common_1.RequestMethod.ALL});}};AppModule=__decorate([common_1.Module({imports:[tasks_module_1.TasksModule,typeorm_1.TypeOrmModule.forRoot(typeorm_config_1.typeormConfig),auth_module_1.AuthModule],controllers:[],providers:[]})],AppModule);exports.AppModule=AppModule;
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
+const typeorm_config_1 = require("@config/typeorm.config");
+const auth_module_1 = require("./modules/auth/auth.module");
+const tasks_module_1 = require("./modules/tasks/tasks.module");
+const logger_middleware_1 = require("./middlewares/logger.middleware");
+let AppModule = class AppModule {
+    configure(consumer) {
+        consumer
+            .apply(logger_middleware_1.LoggerMiddleware)
+            .forRoutes({ path: '*', method: common_1.RequestMethod.ALL });
+    }
+};
+AppModule = __decorate([
+    common_1.Module({
+        imports: [tasks_module_1.TasksModule, typeorm_1.TypeOrmModule.forRoot(typeorm_config_1.typeormConfig), auth_module_1.AuthModule],
+        controllers: [],
+        providers: [],
+    })
+], AppModule);
+exports.AppModule = AppModule;
+//# sourceMappingURL=app.module.js.map
