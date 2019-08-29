@@ -1,6 +1,11 @@
 {
   "compilerOptions": {
     "module": "commonjs",
+    "plugins": [
+      {
+        "transform": "typescript-transform-paths"
+      }
+    ],
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
