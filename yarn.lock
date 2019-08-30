@@ -363,7 +363,7 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@nestjs/common@^6.6.1":
+"@nestjs/common@^6.6.3":
   version "6.6.3"
   resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-6.6.3.tgz#b6c04cc175e17f82b9f0b404dbe4ba799b414fdc"
   integrity sha512-QWMXdb3X6sflDlFvqK7yUa4WCck3cVUrNM0X/rHUharvLMX7Qx15N5x88rtL8oTpXrL9GuxhIiOBbef4ahAyGA==
@@ -372,7 +372,7 @@
     cli-color "1.4.0"
     uuid "3.3.3"
 
-"@nestjs/core@^6.6.1":
+"@nestjs/core@^6.6.3":
   version "6.6.3"
   resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-6.6.3.tgz#d8750ee959cee6440e5f4f03aa5d78ad290daef8"
   integrity sha512-kQSDpxpfq5O5vjt/51FMxbiy11MFsY0k2IIQpZIXA96G9yV9zbO11tAe/+mulhv3d5CoqGBeEB4wOUjy8xCCcw==
@@ -397,7 +397,7 @@
   resolved "https://registry.yarnpkg.com/@nestjs/passport/-/passport-6.1.0.tgz#80da326cc976a82530648d8025b04c8e2d41c10e"
   integrity sha512-V4KdtFFLsdZQ/HlIECpiK6byzGz57Y12TAc+Iatykk8jWuVFE1jq8RJbpTfB0zG0PTfcGm9crQ6Ut2Rwdmis4Q==
 
-"@nestjs/platform-express@^6.6.1":
+"@nestjs/platform-express@^6.6.3":
   version "6.6.3"
   resolved "https://registry.yarnpkg.com/@nestjs/platform-express/-/platform-express-6.6.3.tgz#6d48eeedc6ab518321fbe33ed3be632ac9c9fe35"
   integrity sha512-Lyc7gSKh5XNnlNNSO8L9WFboVWK46fW0om0x24KZBH/mGrdPvOtW2hvTZNXoj6wBkHn0TyNMf382SR6lFEykYA==
@@ -415,10 +415,10 @@
     lodash "4.17.14"
     path-to-regexp "3.0.0"
 
-"@nestjs/testing@6.6.1":
-  version "6.6.1"
-  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-6.6.1.tgz#fc94a90b6f13dfa86d3f7f9334a24f7b41bed3cf"
-  integrity sha512-v0S86iZnUltWMDp31M2xYZ2K9yfJs2qKg1OnZdJFy/yAZE3I3gI2WwkFu5TI8L/v8XZp78Zp2Xjd9slfQYLvyg==
+"@nestjs/testing@6.6.3":
+  version "6.6.3"
+  resolved "https://registry.yarnpkg.com/@nestjs/testing/-/testing-6.6.3.tgz#bd219ce283ef689f4f959f9b653290d5cc891c8d"
+  integrity sha512-8NiIvopoLGs4Pjb44XBrEpqxizDf/wf/7TzC/tijDWY9utK4f6UseMGijOcVGpQNvS8FFUFX/UTKJG/LgS0nsw==
   dependencies:
     optional "0.1.4"
 
@@ -562,10 +562,15 @@
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.1.tgz#dc488842312a7f075149312905b5e3c0b054c79d"
   integrity sha512-FwI9gX75FgVBJ7ywgnq/P7tw+/o1GUbtP0KzbtusLigAOgIgNISRK0ZPl4qertvXSIE8YbsVJueQ90cDt9YYyw==
 
-"@types/node@*", "@types/node@^12.7.2":
+"@types/node@*":
   version "12.7.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.2.tgz#c4e63af5e8823ce9cc3f0b34f7b998c2171f0c44"
   integrity sha512-dyYO+f6ihZEtNPDcWNR1fkoTDf3zAK3lAABDze3mz6POyIercH0lEUawUFXlG8xaQZmm1yEBON/4TsYv/laDYg==
+
+"@types/node@^12.7.3":
+  version "12.7.3"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.3.tgz#27b3f40addaf2f580459fdb405222685542f907a"
+  integrity sha512-3SiLAIBkDWDg6vFo0+5YJyHPWU9uwu40Qe+v+0MH8wRKYBimHvvAOyk3EzMrD/TrIlLYfXrqDqrg913PynrMJQ==
 
 "@types/range-parser@*":
   version "1.2.3"
@@ -2856,7 +2861,7 @@ helmet-csp@2.9.0:
     content-security-policy-builder "2.1.0"
     dasherize "2.0.0"
 
-helmet@^3.20.0:
+helmet@^3.20.1:
   version "3.20.1"
   resolved "https://registry.yarnpkg.com/helmet/-/helmet-3.20.1.tgz#802fcb39ac6865208cbc6879d3502e582c6f777e"
   integrity sha512-em+X5Wz/f0yqoRsBnpnVy3wJHSiIeskX3FQn30szBh1tILaOeSRRLkShuUVFlk/o4qTYjWxdHg4FrRe45iBWHg==
