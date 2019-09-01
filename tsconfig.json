@@ -8,22 +8,22 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
       "@utils/*": [
-        "src/utils/*"
+        "./utils/*"
       ],
       "@dto/*": [
-        "src/dto/*"
+        "./dto/*"
       ],
       "@middlewares/*": [
-        "src/middlewares/*"
+        "./middlewares/*"
       ],
       "@modules/*": [
-        "src/modules/*"
+        "./modules/*"
       ],
       "@config/*": [
-        "src/config/*"
+        "./config/*"
       ]
     },
     "incremental": true
