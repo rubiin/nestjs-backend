@@ -1,25 +1,27 @@
+import * as dotenv from 'dotenv';
+
+let path: string;
+switch (process.env.NODE_ENV) {
+  case 'test':
+  path = `${__dirname}/../../src/config/.env.test`;
+  break;
+  case 'production':
+  path = `${__dirname}/../../src/config/.env`;
+  break;
+  default:
+  path = `${__dirname}/../../src/config/.env.dev`;
+}
+dotenv.config({ path , debug: true});
+
 const config = {
-  dev: {
-    secret: 'secretKey',
-    expiresIn: '10h',
-    db: {
-      host: 'raja.db.elephantsql.com',
-      port: 5432,
-      username: 'cmdbbtbi',
-      password: 'wG8m7trOngY7VAgZtET1dqtJjQJNi-FE',
-      database: 'cmdbbtbi',
-    },
-  },
-  production: {
-    secret: 'asdhOA/&s8adbskha723ye3u',
-    expiresIn: '1h',
-    db: {
-      host: 'raja.db.elephantsql.com',
-      port: 5432,
-      username: 'cmdbbtbi',
-      password: 'wG8m7trOngY7VAgZtET1dqtJjQJNi-FE',
-      database: 'cmdbbtbi',
-    },
-  },
+  secret: process.env.JWT_SECRET,
+  expiresIn: '10h',
+  db: {
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT),
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+  }
 };
-export default config[process.env.NODE_ENV];
+export default config;
