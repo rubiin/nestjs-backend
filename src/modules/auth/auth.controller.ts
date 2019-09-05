@@ -12,8 +12,8 @@ import {
   ClassSerializerInterceptor,
   CacheInterceptor,
 } from '@nestjs/common';
-import { UserDto } from '@dto/userCreate.dto';
-import { UserLoginDto } from '@dto/userLogin.dto';
+import { UserDto } from 'common/dto/userCreate.dto';
+import { UserLoginDto } from 'common/dto/userLogin.dto';
 import { AuthService } from './auth.service';
 import { User } from './user.entity';
 import { FileInterceptor } from '@nestjs/platform-express';

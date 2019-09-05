@@ -14,8 +14,8 @@
       "@utils/*": [
         "./utils/*"
       ],
-      "@dto/*": [
-        "./dto/*"
+      "@common/*": [
+        "./common/*"
       ],
       "@middlewares/*": [
         "./middlewares/*"
