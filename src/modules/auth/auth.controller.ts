@@ -12,13 +12,13 @@ import {
   ClassSerializerInterceptor,
   CacheInterceptor,
 } from '@nestjs/common';
-import { UserDto } from 'common/dto/userCreate.dto';
-import { UserLoginDto } from 'common/dto/userLogin.dto';
+import { UserDto } from '@common/dto/userCreate.dto';
+import { UserLoginDto } from '@common/dto/userLogin.dto';
 import { AuthService } from './auth.service';
 import { User } from './user.entity';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
-import { multerConfig } from '@utils/helperFunctions.utils';
+import {minioClient, multerConfig} from '@utils/helperFunctions.utils';
 
 @Controller('auth')
 @UseInterceptors(CacheInterceptor)
@@ -59,4 +59,15 @@ export class AuthController {
   uploadFile(@UploadedFile() file) {
     console.log(file);
   }
+
+
+  @Post('uploadWithMinio')
+  @UseInterceptors(FileInterceptor('file'))
+  async uploadFileWithMinio(@UploadedFile() file) {
+      console.log(file.buffer);
+     await minioClient.putObject('rubin', 'hello', file.buffer);
+  }
+
+
+
 }

@@ -7,10 +7,9 @@ import {
 } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeormConfig } from '@config/typeorm.config';
-import { AuthModule } from './modules/auth/auth.module';
-import { TasksModule } from './modules/tasks/tasks.module';
-import { LoggerMiddleware } from './middlewares/logger.middleware';
-import { AuthController } from './modules/auth/auth.controller';
+import { AuthModule } from '@modules/auth/auth.module';
+import { TasksModule } from '@modules/tasks/tasks.module';
+import { LoggerMiddleware } from '@common/middlewares/logger.middleware';
 
 @Module({
   imports: [TasksModule, TypeOrmModule.forRoot(typeormConfig), AuthModule],
