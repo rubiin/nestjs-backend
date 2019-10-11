@@ -21,7 +21,7 @@
     "lint-fix": "tslint --fix -c tslint.json --project tsconfig.json 'src/**/*{.ts,.tsx}'"
   },
   "dependencies": {
-    "@nestjs/common": "^6.6.3",
+    "@nestjs/common": "^6.8.3",
     "@nestjs/core": "^6.6.7",
     "@nestjs/jwt": "^6.1.1",
     "@nestjs/passport": "^6.1.0",
